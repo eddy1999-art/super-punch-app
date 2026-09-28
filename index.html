@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Super Punch</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+
+    <header class="topbar">
+
+        <div>
+            <p class="small-label">SUPERINTENDENT</p>
+            <h1>Super Punch</h1>
+        </div>
+
+        <button
+            class="new-item-button"
+            onclick="openNewItemForm()"
+        >
+            + Punch
+        </button>
+
+    </header>
+
+
+    <!-- PROJECT INFORMATION -->
+
+    <section class="project-card">
+
+        <p class="small-label">
+            CURRENT PROJECT
+        </p>
+
+        <h2>
+            3828 Piney Grove Street
+        </h2>
+
+        <p>
+            Pinecrest Ridge
+        </p>
+
+        <div class="project-info">
+
+            <div>
+                <span>Closing</span>
+                <strong>Oct 1, 2026</strong>
+            </div>
+
+            <div>
+                <span>Total Items</span>
+                <strong id="totalCount">0</strong>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- DASHBOARD -->
+
+    <section class="dashboard">
+
+        <div
+            class="stat-card"
+            onclick="filterByStatus('open')"
+        >
+            <span id="openCount">0</span>
+            <p>Open</p>
+        </div>
+
+        <div
+            class="stat-card"
+            onclick="filterByStatus('progress')"
+        >
+            <span id="progressCount">0</span>
+            <p>In Progress</p>
+        </div>
+
+        <div
+            class="stat-card"
+            onclick="filterByStatus('recheck')"
+        >
+            <span id="recheckCount">0</span>
+            <p>Recheck</p>
+        </div>
+
+        <div
+            class="stat-card"
+            onclick="filterByStatus('complete')"
+        >
+            <span id="completeCount">0</span>
+            <p>Complete</p>
+        </div>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <section class="controls">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search room, trade, contractor..."
+            oninput="searchPunchItems()"
+        >
+
+        <select
+            id="tradeFilter"
+            onchange="filterPunchItems()"
+        >
+
+            <option value="all">
+                All Trades
+            </option>
+
+            <option value="Painting">
+                Painting
+            </option>
+
+            <option value="Appliances">
+                Appliances
+            </option>
+
+            <option value="Cabinets">
+                Cabinets
+            </option>
+
+            <option value="Windows">
+                Windows
+            </option>
+
+            <option value="Fire Protection">
+                Fire Protection
+            </option>
+
+            <option value="Drywall">
+                Drywall
+            </option>
+
+            <option value="Tile">
+                Tile
+            </option>
+
+            <option value="Masonry">
+                Masonry
+            </option>
+
+            <option value="Doors">
+                Doors / Hardware
+            </option>
+
+            <option value="Closet Systems">
+                Closet Systems
+            </option>
+
+            <option value="Caulking">
+                Caulking
+            </option>
+
+            <option value="Other">
+                Other
+            </option>
+
+        </select>
+
+    </section>
+
+
+    <!-- FILTER BUTTONS -->
+
+    <section class="filter-row">
+
+        <button
+            class="filter active"
+            onclick="showAllItems(this)"
+        >
+            All
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterByStatus('open', this)"
+        >
+            Open
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterByStatus('progress', this)"
+        >
+            In Progress
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterByStatus('recheck', this)"
+        >
+            Recheck
+        </button>
+
+        <button
+            class="filter"
+            onclick="filterByStatus('complete', this)"
+        >
+            Complete
+        </button>
+
+    </section>
+
+
+    <!-- PUNCH ITEMS -->
+
+    <main>
+
+        <div id="punchList">
+
+            <!-- JavaScript will insert punch items here -->
+
+        </div>
+
+    </main>
+
+
+    <!-- NEW PUNCH ITEM FORM -->
+
+    <div
+        id="formOverlay"
+        class="overlay"
+        onclick="closeNewItemForm(event)"
+    >
+
+        <section
+            class="new-item-panel"
+            onclick="event.stopPropagation()"
+        >
+
+            <div class="panel-header">
+
+                <div>
+                    <p class="small-label">
+                        NEW ITEM
+                    </p>
+
+                    <h2>
+                        Add Punch Item
+                    </h2>
+                </div>
+
+                <button
+                    class="close-button"
+                    onclick="closeNewItemForm()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <label>
+                Location
+            </label>
+
+            <input
+                id="itemLocation"
+                type="text"
+                placeholder="Example: Kitchen"
+            >
+
+
+            <label>
+                Trade
+            </label>
+
+            <select id="itemTrade">
+
+                <option value="Painting">
+                    Painting
+                </option>
+
+                <option value="Appliances">
+                    Appliances
+                </option>
+
+                <option value="Cabinets">
+                    Cabinets
+                </option>
+
+                <option value="Windows">
+                    Windows
+                </option>
+
+                <option value="Fire Protection">
+                    Fire Protection
+                </option>
+
+                <option value="Drywall">
+                    Drywall
+                </option>
+
+                <option value="Tile">
+                    Tile
+                </option>
+
+                <option value="Masonry">
+                    Masonry
+                </option>
+
+                <option value="Doors">
+                    Doors / Hardware
+                </option>
+
+                <option value="Closet Systems">
+                    Closet Systems
+                </option>
+
+                <option value="Caulking">
+                    Caulking
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <label>
+                Description
+            </label>
+
+            <textarea
+                id="itemDescription"
+                placeholder="Describe what needs to be corrected..."
+            ></textarea>
+
+
+            <label>
+                Assigned Contractor
+            </label>
+
+            <input
+                id="itemContractor"
+                type="text"
+                placeholder="Example: Sierra Interiors"
+            >
+
+
+            <label>
+                Due Date
+            </label>
+
+            <input
+                id="itemDueDate"
+                type="date"
+            >
+
+
+            <label>
+                Status
+            </label>
+
+            <select id="itemStatus">
+
+                <option value="open">
+                    Open
+                </option>
+
+                <option value="progress">
+                    In Progress
+                </option>
+
+                <option value="recheck">
+                    Ready for Recheck
+                </option>
+
+                <option value="complete">
+                    Complete
+                </option>
+
+            </select>
+
+
+            <label>
+                Notes
+            </label>
+
+            <textarea
+                id="itemNotes"
+                placeholder="Superintendent notes..."
+            ></textarea>
+
+
+            <button
+                class="save-button"
+                onclick="savePunchItem()"
+            >
+                Save Punch Item
+            </button>
+
+        </section>
+
+    </div>
+
+
+    <!-- BOTTOM NAVIGATION -->
+
+    <nav class="bottom-nav">
+
+        <button>
+            <span>▦</span>
+            Dashboard
+        </button>
+
+        <button>
+            <span>✓</span>
+            Punch
+        </button>
+
+        <button>
+            <span>👷</span>
+            Contractors
+        </button>
+
+        <button>
+            <span>⌂</span>
+            Rooms
+        </button>
+
+    </nav>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
